@@ -15,19 +15,42 @@ React Native SDK for [OpenWearables](https://github.com/the-momentum/open-wearab
 npm install open-wearables
 ```
 
-### iOS
+### React Native CLI
 
-Run CocoaPods install after adding the package:
+After installing the package, install the iOS CocoaPods dependencies:
 
 ```sh
 npx pod-install
 ```
 
-The pod depends on `ExpoModulesCore` and `OpenWearablesHealthSDK`.
+or manually:
 
-### Android
+```sh
+cd ios && pod install
+```
 
-Not yet supported.
+### Expo
+
+Expo projects using the Expo Modules API automatically link native dependencies.
+
+After installing the package, simply run your project.
+
+```sh
+npx expo run:ios
+```
+
+or, if your project does not yet have native directories:
+
+```sh
+npx expo prebuild
+```
+
+## Example app
+
+A minimal Expo application demonstrating how to integrate the SDK.
+
+See the example project:  
+👉 **[example/README.md](./example/README.md)**
 
 ## Usage
 
@@ -191,7 +214,3 @@ The following health data type identifiers can be passed to `requestAuthorizatio
 
 **Aliases**
 `restingEnergy`, `bloodOxygen`
-
-## Example app
-
-The `/example` folder contains a minimal Expo app demonstrating SDK integration.

@@ -126,4 +126,12 @@ public class OpenWearablesAppDelegateSubscriber: ExpoAppDelegateSubscriber {
         
         return true
     }
+
+    public func application(
+        _ application: UIApplication,
+        handleEventsForBackgroundURLSession identifier: String,
+        completionHandler: @escaping () -> Void
+    ) {
+        OpenWearablesHealthSDK.setBackgroundCompletionHandler(completionHandler)
+    }
 }

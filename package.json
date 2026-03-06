@@ -41,5 +41,12 @@
   },
   "expo": {
     "plugin": "./app.plugin.js"
-  }
+  },
+  "files": [
+    "build",
+    "ios",
+    "android",
+    "src",
+    "app.plugin.js"
+  ]
 }

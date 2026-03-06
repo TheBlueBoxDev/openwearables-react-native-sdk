@@ -7,7 +7,6 @@ import {
 export interface OpenWearablesPluginProps {
   healthShareUsage?: string;
   healthUpdateUsage?: string;
-  healthRecordsUsage?: string;
 }
 
 const withOpenWearables: ConfigPlugin<OpenWearablesPluginProps> = (
@@ -17,13 +16,11 @@ const withOpenWearables: ConfigPlugin<OpenWearablesPluginProps> = (
   const {
     healthShareUsage = "Allow access to your health data.",
     healthUpdateUsage = "Allow updates to your health data.",
-    healthRecordsUsage = "Allow access to your clinical health records.",
   } = options;
 
   // Add HealthKit entitlements
   config = withEntitlementsPlist(config, (config) => {
     config.modResults["com.apple.developer.healthkit"] = true;
-    config.modResults["com.apple.developer.healthkit.access"] = true;
     config.modResults["com.apple.developer.healthkit.background-delivery"] =
       true;
     return config;
@@ -33,8 +30,6 @@ const withOpenWearables: ConfigPlugin<OpenWearablesPluginProps> = (
   config = withInfoPlist(config, (config) => {
     config.modResults["NSHealthShareUsageDescription"] = healthShareUsage;
     config.modResults["NSHealthUpdateUsageDescription"] = healthUpdateUsage;
-    config.modResults["NSHealthClinicalHealthRecordsShareUsageDescription"] =
-      healthRecordsUsage;
 
     config.modResults["UIBackgroundModes"] = ["fetch", "processing"];
 
