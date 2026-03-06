@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export function Group(props: { name: string; children: React.ReactNode }) {
   return (
@@ -9,7 +9,7 @@ export function Group(props: { name: string; children: React.ReactNode }) {
   );
 }
 
-const styles = {
+const styles = StyleSheet.create({
   groupHeader: {
     fontSize: 20,
     marginBottom: 8,
@@ -20,4 +20,4 @@ const styles = {
     padding: 20,
     gap: 8,
   },
-};
+});

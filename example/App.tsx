@@ -7,15 +7,16 @@ import {
   Platform,
   SafeAreaView,
   ScrollView,
+  StyleSheet,
   Text,
 } from "react-native";
 import { HostGroup } from "./components/HostGroup";
+import { LogsGroup } from "./components/LogsGroup";
 import { SessionGroup } from "./components/SessionGroup";
 import { SyncGroup } from "./components/SyncGroup";
 import { INITIAL_HOST } from "./utils/constants";
 
 export default function App() {
-  const onLogPayload = useEvent(OpenWearables, "onLog");
   const onAuthErrorPayload = useEvent(OpenWearables, "onAuthError");
   const [credentials, setCredentials] = useState<Record<string, any>>([]);
 
@@ -36,21 +37,13 @@ export default function App() {
 
   const refreshStoredCredentials = () => {
     const credentials = OpenWearables.getStoredCredentials();
-    console.log("Credentials: ", credentials);
+    console.log("[OpenWearables] - Credentials: ", credentials);
     setCredentials(credentials);
   };
 
   useEffect(() => {
-    if (!onLogPayload) return;
-    console.log(`[OpenWearables] - ${onLogPayload?.message}`);
-  }, [onLogPayload]);
-
-  useEffect(() => {
     if (!onAuthErrorPayload) return;
     Alert.alert(onAuthErrorPayload.message);
-    console.error(
-      `[OpenWearables] - ${onAuthErrorPayload.statusCode}: ${onAuthErrorPayload?.message}`
-    );
   }, [onAuthErrorPayload]);
 
   return (
@@ -69,14 +62,18 @@ export default function App() {
             credentials={credentials}
             onRefresh={refreshStoredCredentials}
           />
-          <SyncGroup />
+          <SyncGroup
+            syncActive={credentials["isSyncActive"] === true}
+            onRefresh={refreshStoredCredentials}
+          />
+          <LogsGroup />
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
 
-const styles = {
+const styles = StyleSheet.create({
   header: {
     fontSize: 30,
   },
@@ -88,4 +85,4 @@ const styles = {
     flex: 1,
     backgroundColor: "#eee",
   },
-};
+});

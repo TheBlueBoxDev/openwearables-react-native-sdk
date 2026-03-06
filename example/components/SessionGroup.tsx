@@ -1,6 +1,7 @@
 import OpenWearables from "open-wearables";
 import { useState } from "react";
-import { Button, Text } from "react-native";
+import { Text } from "react-native";
+import { Button, Colors } from "./Button";
 import { Group } from "./Group";
 import { Input } from "./Input";
 
@@ -11,8 +12,17 @@ export function SessionGroup({
   credentials: Record<string, any>;
   onRefresh: () => void;
 }) {
-  const [userId, setUserId] = useState("");
-  const [apiKey, setApiKey] = useState("");
+  const [userId, setUserId] = useState<string>(credentials["userId"] ?? "");
+  const [apiKey, setApiKey] = useState<string>(credentials["apiKey"] ?? "");
+
+  const handleSessionToggle = () => {
+    if (OpenWearables.isSessionValid()) {
+      OpenWearables.signOut();
+    } else {
+      OpenWearables.signIn(userId, null, null, apiKey);
+    }
+    onRefresh();
+  };
 
   return (
     <Group name="Session">
@@ -20,7 +30,7 @@ export function SessionGroup({
         <Text>User ID: {credentials["userId"]}</Text>
       ) : (
         <Input
-          onChangeText={(text) => setUserId(text)}
+          onChangeText={setUserId}
           value={userId}
           placeholder="User ID"
           autoCorrect={false}
@@ -31,7 +41,7 @@ export function SessionGroup({
         <Text>API Key: {credentials["apiKey"]}</Text>
       ) : (
         <Input
-          onChangeText={(text) => setApiKey(text)}
+          onChangeText={setApiKey}
           value={apiKey}
           placeholder="API Key"
           autoCorrect={false}
@@ -40,21 +50,14 @@ export function SessionGroup({
       )}
       <Button
         title={OpenWearables.isSessionValid() ? "Sign out" : "Sign in"}
-        color={OpenWearables.isSessionValid() ? "red" : undefined}
+        color={OpenWearables.isSessionValid() ? Colors.destructive : Colors.primary}
         disabled={
           !(
             OpenWearables.isSessionValid() ||
             (userId.length > 0 && apiKey.length > 0)
           )
         }
-        onPress={() => {
-          if (OpenWearables.isSessionValid()) {
-            OpenWearables.signOut();
-          } else {
-            OpenWearables.signIn(userId, null, null, apiKey);
-          }
-          onRefresh();
-        }}
+        onPress={handleSessionToggle}
       />
     </Group>
   );

@@ -32,6 +32,7 @@
       [
         "open-wearables",
         {
+          "healthRecordsUsage": "Allow access to your clinical records.",
           "healthShareUsage": "We need access to your health data to sync it.",
           "healthUpdateUsage": "We need to update health data when required."
         }
