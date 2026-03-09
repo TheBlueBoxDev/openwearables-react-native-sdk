@@ -15,7 +15,27 @@ React Native SDK for [OpenWearables](https://github.com/the-momentum/open-wearab
 npm install open-wearables
 ```
 
+### Expo
+
+Expo projects using the Expo Modules API automatically link native dependencies.
+
+After installing the package, simply run your project.
+
+```sh
+npx expo run:ios
+```
+
+If your project does not yet contain native directories (ios/ and android/), Expo will automatically generate them.
+
+You can also generate them manually using:
+
+```sh
+npx expo prebuild
+```
+
 ### React Native CLI
+
+For bare React Native projects, you must ensure that you have **[installed and configured the expo package](https://docs.expo.dev/bare/installing-expo-modules/)** before continuing.
 
 After installing the package, install the iOS CocoaPods dependencies:
 
@@ -29,21 +49,30 @@ or manually:
 cd ios && pod install
 ```
 
-### Expo
+## Config Plugin (optional)
 
-Expo projects using the Expo Modules API automatically link native dependencies.
+You can customize the permission messages displayed to users by configuring the plugin in your app.json or app.config.js.
 
-After installing the package, simply run your project.
-
-```sh
-npx expo run:ios
+```json
+{
+  "expo": {
+    "plugins": [
+      [
+        "open-wearables",
+        {
+          "healthShareUsage": "Allow $(PRODUCT_NAME) to read your health data.",
+          "healthUpdateUsage": "Allow $(PRODUCT_NAME) to write health data."
+        }
+      ]
+    ]
+  }
+}
 ```
 
-or, if your project does not yet have native directories:
-
-```sh
-npx expo prebuild
-```
+| **Option**        | **Description**                                              |
+| ----------------- | ------------------------------------------------------------ |
+| healthShareUsage  | Sets the NSHealthShareUsageDescription value in Info.plist.  |
+| healthUpdateUsage | Sets the NSHealthUpdateUsageDescription value in Info.plist. |
 
 ## Example app
 
