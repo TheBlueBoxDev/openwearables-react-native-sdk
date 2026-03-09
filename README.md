@@ -1,19 +1,26 @@
-# open-wearables
+# Open Wearables React Native SDK
 
-React Native SDK for [OpenWearables](https://github.com/the-momentum/open-wearables), built with the [Expo Module API](https://docs.expo.dev/modules/module-api/). It bridges the native `OpenWearablesHealthSDK` to allow React Native apps to collect and sync health data.
+The official React Native SDK for the [Open Wearables](https://github.com/the-momentum/open-wearables) project.
+
+The SDK is build with the [Expo Module API](https://docs.expo.dev/modules/module-api/) enableing stall the app in Expo Project as React native project too. 
+It is a wrapper for the native iOS and Android SDKs to allow React Native apps to collect and sync health data.
 
 ## Platform support
 
 | Platform | Status                                                                  |
 | -------- | ----------------------------------------------------------------------- |
 | iOS      | Implemented (via `OpenWearablesHealthSDK` CocoaPod, requires iOS 15.1+) |
-| Android  | Pending — waiting for the Android native SDK to be available            |
+| Android  | In progress — coming soon                                                |
 
 ## Installation
+
+Currently, the SDK is only available locally. You can install it using the following command fromt the project root folder:
 
 ```sh
 npm install open-wearables
 ```
+
+Then, depending if are using expo or react native cli, follow the instructions below:
 
 ### Expo
 
@@ -33,23 +40,8 @@ You can also generate them manually using:
 npx expo prebuild
 ```
 
-### React Native CLI
 
-For bare React Native projects, you must ensure that you have **[installed and configured the expo package](https://docs.expo.dev/bare/installing-expo-modules/)** before continuing.
-
-After installing the package, install the iOS CocoaPods dependencies:
-
-```sh
-npx pod-install
-```
-
-or manually:
-
-```sh
-cd ios && pod install
-```
-
-## Config Plugin (optional)
+#### Config Plugin (optional)
 
 You can customize the permission messages displayed to users by configuring the plugin in your app.json or app.config.js.
 
@@ -73,6 +65,23 @@ You can customize the permission messages displayed to users by configuring the 
 | ----------------- | ------------------------------------------------------------ |
 | healthShareUsage  | Sets the NSHealthShareUsageDescription value in Info.plist.  |
 | healthUpdateUsage | Sets the NSHealthUpdateUsageDescription value in Info.plist. |
+
+
+### React Native CLI
+
+For bare React Native projects, you must ensure that you have **[installed and configured the expo package](https://docs.expo.dev/bare/installing-expo-modules/)** before continuing.
+
+After installing the package, install the iOS CocoaPods dependencies:
+
+```sh
+npx pod-install
+```
+
+or manually:
+
+```sh
+cd ios && pod install
+```
 
 ## Example app
 
