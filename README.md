@@ -1,3 +1,6 @@
+# DEPRECATED
+We are moving this repo to the official Open Wearable repo: https://github.com/the-momentum/open-wearables-react-native-sdk
+
 # Open Wearables React Native SDK
 
 The official React Native SDK for the [Open Wearables](https://github.com/the-momentum/open-wearables) project.
