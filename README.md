@@ -41,7 +41,23 @@ npx expo prebuild
 ```
 
 
-#### Config Plugin (optional)
+### React Native CLI
+
+For bare React Native projects, you must ensure that you have **[installed and configured the expo package](https://docs.expo.dev/bare/installing-expo-modules/)** before continuing.
+
+After installing the package, install the iOS CocoaPods dependencies:
+
+```sh
+npx pod-install
+```
+
+or manually:
+
+```sh
+cd ios && pod install
+```
+
+### Config Plugin (optional)
 
 You can customize the permission messages displayed to users by configuring the plugin in your app.json or app.config.js.
 
@@ -66,22 +82,6 @@ You can customize the permission messages displayed to users by configuring the 
 | healthShareUsage  | Sets the NSHealthShareUsageDescription value in Info.plist.  |
 | healthUpdateUsage | Sets the NSHealthUpdateUsageDescription value in Info.plist. |
 
-
-### React Native CLI
-
-For bare React Native projects, you must ensure that you have **[installed and configured the expo package](https://docs.expo.dev/bare/installing-expo-modules/)** before continuing.
-
-After installing the package, install the iOS CocoaPods dependencies:
-
-```sh
-npx pod-install
-```
-
-or manually:
-
-```sh
-cd ios && pod install
-```
 
 ## Example app
 
