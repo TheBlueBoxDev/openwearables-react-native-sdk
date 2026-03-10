@@ -57,7 +57,7 @@ or manually:
 cd ios && pod install
 ```
 
-### Config Plugin (optional)
+## Config Plugin (optional)
 
 You can customize the permission messages displayed to users by configuring the plugin in your app.json or app.config.js.
 
