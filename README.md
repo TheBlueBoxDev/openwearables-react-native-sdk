@@ -1,5 +1,4 @@
 # DEPRECATED
-We are moving this repo to the official Open Wearable repo: https://github.com/the-momentum/open-wearables-react-native-sdk
 
 We are moving this repo to the official forked Open Wearable repo: [https://github.com/TheBlueBoxDev/open-wearables-react-native-sdk](https://github.com/TheBlueBoxDev/open-wearables-react-native-sdk)
 forked from [the-momentum/open-wearables-react-native-sdk](https://github.com/the-momentum/open-wearables-react-native-sdk)
